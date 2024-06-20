@@ -1,0 +1,47 @@
+{
+  "name": "@dreamitdev/luminesce",
+  "version": "0.0.0",
+  "description": "A simple aws serverless framework for dreamitdev projects",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./application": "./application/index.js",
+    "./configuration": "./configuration/index.js",
+    "./console": "./console/index.js",
+    "./database": "./database/index.js",
+    "./facades": "./facades/index.js",
+    "./hashing": "./hashing/index.js",
+    "./http": "./http/index.js",
+    "./http/action": "./http/action/index.js",
+    "./http/middleware": "./http/middleware/index.js",
+    "./http/request": "./http/request/index.js",
+    "./http/response": "./http/response/index.js",
+    "./http/routing": "./http/routing/index.js",
+    "./utilities": "./utilities/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dreamitdev/luminesce.git"
+  },
+  "keywords": [
+    "dreamitdev",
+    "aws",
+    "serverless",
+    "framework"
+  ],
+  "author": "wabisque-dreamitdev",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/dreamitdev/luminesce/issues"
+  },
+  "homepage": "https://github.com/dreamitdev/luminesce#readme",
+  "dependencies": {
+    "@dreamitdev/mazo": "^0.0.0",
+    "bcryptjs": "^2.4.3",
+    "uuid": "^10.0.0"
+  }
+}
