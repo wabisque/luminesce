@@ -7,7 +7,7 @@ import Configuration from '../configuration/configuration.js';
 import Hasher from '../hashing/hasher.js';
 
 export default class Application {
-  /** @type {bool} */
+  /** @type {boolean} */
   static get initialized() {
     return Application.#instance != null;
   }
@@ -35,7 +35,7 @@ export default class Application {
   get hasher() {
     return this.#hasher;
   }
-  /** @type {bool} */
+  /** @type {boolean} */
   get initialized() {
     return Application.initialized;
   }

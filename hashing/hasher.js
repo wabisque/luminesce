@@ -14,7 +14,7 @@ export default class Hasher {
   /**
    * @param {string} value
    * @param {string} hashed
-   * @returns {Promise<bool>}
+   * @returns {Promise<boolean>}
    */
   async check(value, hashed) {
     return await bcryptjs.compare(value, hashed);

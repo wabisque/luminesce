@@ -10,20 +10,20 @@ export default class Request {
   /** @type {string} */
   path;
   /** @type {string} */
-  query;
+  search;
 
   /**
    * @param {'get'|'post'|'put'|'delete'|'options'} method
    * @param {string} path
    * @param {Record<string, string>} headers
    * @param {string} [body]
-   * @param {string} [query]
+   * @param {string} [search]
    */
-  constructor(method, path, headers, body = '', query = '') {
+  constructor(method, path, headers, body = '', search = '') {
     this.method = method;
     this.path = path;
     this.headers = headers;
     this.body = body;
-    this.query = query;
+    this.search = search;
   }
 }

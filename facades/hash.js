@@ -4,7 +4,7 @@ export default class Hash extends Facade {
   /**
    * @param {string} value
    * @param {string} hashed
-   * @returns {Promise<bool>}
+   * @returns {Promise<boolean>}
    */
   static async check(value, hashed) {
     return await this._app.hasher.check(value, hashed);
