@@ -1,5 +1,5 @@
 export default class Request {
-  /** @type {Record<string, *>} */
+  /** @type {string} */
   body;
   /** @type {Record<string, string>} */
   headers;
@@ -9,17 +9,17 @@ export default class Request {
   method;
   /** @type {string} */
   path;
-  /** @type {Record<string, string|string[]>} */
+  /** @type {string} */
   query;
 
   /**
    * @param {'get'|'post'|'put'|'delete'|'options'} method
    * @param {string} path
-   * @param {Record<string, *>} [body]
-   * @param {Record<string, string>} [headers]
-   * @param {Record<string, string|string[]>} [query]
+   * @param {Record<string, string>} headers
+   * @param {string} [body]
+   * @param {string} [query]
    */
-  constructor(method, path, body = {}, headers = {}, query = {}) {
+  constructor(method, path, headers, body = '', query = '') {
     this.method = method;
     this.path = path;
     this.headers = headers;
