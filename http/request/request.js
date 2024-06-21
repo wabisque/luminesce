@@ -134,11 +134,11 @@ export default class Request {
   #generateInput() {
     const contentType = this.getHeader('content-type');
 
-    if (contentType.startsWith('application/json')) {
+    if (contentType?.startsWith('application/json') ?? false) {
       return new JsonParser(this.#body).execute();
     }
 
-    if(contentType.startsWith('application/x-www-form-urlencoded')) {
+    if(contentType?.startsWith('application/x-www-form-urlencoded') ?? false) {
       return new QueryParser(this.#body).execute();
     }
 
