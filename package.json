@@ -1,6 +1,6 @@
 {
   "name": "@dreamitdev/luminesce",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple aws serverless framework for dreamitdev projects",
   "type": "module",
   "main": "index.js",

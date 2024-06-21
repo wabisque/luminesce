@@ -1,42 +1,29 @@
 export default class Request {
-  /** @type {string} */
-  get path() {
-    return this.#path;
-  }
+  /** @type {Record<string, *>} */
+  body;
+  /** @type {Record<string, string>} */
+  headers;
   /** @type {import('../routing/route-match.js').default} */
-  get match() {
-    if(this.#match == null) {
-      throw new Error('Match not set.');
-    }
-    return this.#match;
-  }
-  /** 
-   * @param {import('../routing/route-match.js').default} value
-   */
-  set match(value) {
-    if(this.#match != null) {
-      throw new Error('Match already set.');
-    }
-
-    this.#match = value;
-  }
+  match;
   /** @type {'get'|'post'|'put'|'delete'|'options'} */
-  get method() {
-    return this.#method;
-  }
+  method;
   /** @type {string} */
-  #path;
-  /** @type {import('../routing/route-match.js').default} */
-  #match;
-  /** @type {'get'|'post'|'put'|'delete'|'options'} */
-  #method;
+  path;
+  /** @type {Record<string, string|string[]>} */
+  query;
 
   /**
    * @param {'get'|'post'|'put'|'delete'|'options'} method
    * @param {string} path
+   * @param {Record<string, *>} [body]
+   * @param {Record<string, string>} [headers]
+   * @param {Record<string, string|string[]>} [query]
    */
-  constructor(method, path) {
-    this.#method = method;
-    this.#path = path;
+  constructor(method, path, body = {}, headers = {}, query = {}) {
+    this.method = method;
+    this.path = path;
+    this.headers = headers;
+    this.body = body;
+    this.query = query;
   }
 }
