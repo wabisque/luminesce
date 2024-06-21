@@ -1,5 +1,5 @@
 export default class RouteMatch {
-  /** @type {Record<string, string>} */
+  /** @type {Record<string, *>} */
   get parameters() {
     return this.#parameters;
   }
@@ -8,14 +8,14 @@ export default class RouteMatch {
     return this.#route;
   }
 
-  /** @type {Record<string, string>} */
+  /** @type {Record<string, *>} */
   #parameters;
   /** @type {import('./route.js').default} */
   #route;
 
   /**
    * @param {import('./route.js').default} route 
-   * @param {Record<string, string>} parameters 
+   * @param {Record<string, *>} [parameters] 
    */
   constructor(route, parameters = {}) {
     this.#route = route;

@@ -5,7 +5,7 @@ export default class RouteGroupBuilder {
   #app;
   /** @type {Record<string, typeof import('./route-binding.js').default>} */
   #bindings;
-  /** @type {typeof import('../middleware/middleware.js').default[]} */
+  /** @type {(import('../middleware/middleware-builder.js').default|typeof import('../middleware/middleware.js').default)[]} */
   #middleware;
   /** @type {string} */
   #path;
@@ -13,7 +13,7 @@ export default class RouteGroupBuilder {
   /**
    * @param {import('../../application/application.js').default} app
    * @param {string} [path]
-   * @param {typeof import('../middleware/middleware.js').default[]} [middleware]
+   * @param {(import('../middleware/middleware-builder.js').default|typeof import('../middleware/middleware.js').default)[]} [middleware]
    * @param {Record<string, typeof import('./route-binding.js').default>} [bindings]
    */
   constructor(app, path = '', middleware = [], bindings = {}) {
@@ -52,7 +52,7 @@ export default class RouteGroupBuilder {
   }
 
   /**
-   * @param  {...typeof import('../middleware/middleware.js').default} middleware 
+   * @param  {...(import('../middleware/middleware-builder.js').default|typeof import('../middleware/middleware.js').default)} middleware 
    * @returns {this}
    */
   middleware(...middleware) {

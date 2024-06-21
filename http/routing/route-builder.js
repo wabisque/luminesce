@@ -38,7 +38,7 @@ export default class RouteBuilder {
   }
 
   /**
-   * @param  {...typeof import('../middleware/middleware.js').default} middleware
+   * @param  {...(import('../middleware/middleware-builder.js').default|typeof import('../middleware/middleware.js').default)} middleware
    * @returns {this}
    */
   middleware(...middleware) {

@@ -3,7 +3,7 @@ export default class RouteContextStack {
   get bindings() {
     return this.#bindings;
   }
-  /** @type { typeof import('../middleware/middleware.js').default[]} */
+  /** @type {(import('../middleware/middleware-builder.js').default|typeof import('../middleware/middleware.js').default)[]} */
   get middleware() {
     return this.#middleware;
   }
@@ -13,7 +13,7 @@ export default class RouteContextStack {
   }
   /** @type {Record<string, typeof import('./route-binding.js').default>} */
   #bindings;
-  /** @type {typeof import('../middleware/middleware.js').default[]} */
+  /** @type {(import('../middleware/middleware-builder.js').default|typeof import('../middleware/middleware.js').default)[]} */
   #middleware;
   /** @type {string} */
   #path;
@@ -21,7 +21,7 @@ export default class RouteContextStack {
   /**
    * 
    * @param {string} [path]
-   * @param {typeof import('../middleware/middleware.js').default[]} [middleware] 
+   * @param {(import('../middleware/middleware-builder.js').default|typeof import('../middleware/middleware.js').default)[]} [middleware] 
    * @param {Record<string, typeof import('./route-binding.js').default>} [bindings] 
    */
   constructor(path = '', middleware = [], bindings = {}) {

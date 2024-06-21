@@ -14,7 +14,7 @@ export default class Middleware {
 
   /**
    * @param {import('../../application/application.js').default} app
-   * @param {import('../request/request.js')} request
+   * @param {import('../request/request.js').default} request
    */
   constructor(app, request) {
     this.#app = app;

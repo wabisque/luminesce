@@ -14,7 +14,7 @@ export default class RouteContext {
 
     return bindings;
   }
-  /** @type {typeof import('../middleware/middleware.js').default[]} */
+  /** @type {(import('../middleware/middleware-builder.js').default|typeof import('../middleware/middleware.js').default)[]} */
   get middleware() {
     const middleware = [];
 

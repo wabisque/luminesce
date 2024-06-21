@@ -1,3 +1,4 @@
+import MiddlewareBuilder from '../middleware/middleware-builder.js';
 import Response from '../response/response.js';
 import RouteMatch from './route-match.js';
 
@@ -12,13 +13,15 @@ export default class Route {
   }
   /** @type {('get'|'post'|'put'|'delete'|'options')[]} */
   get methods() {
-    return this.#methods;
+    return [
+      ...this.#methods,
+    ];
   }
   /**
-   * @param {typeof import('../middleware/middleware.js').default[]} value
+   * @param {(MiddlewareBuilder|typeof import('../middleware/middleware.js').default)[]} value
    */
   set middleware(value) {
-    this.#middleware.push(...value);
+    this.#middleware.push(...this.#sanitizeMiddleware(value));
   }
   /** @type {string} */
   get path() {
@@ -32,7 +35,7 @@ export default class Route {
   #bindings;
   /** @type {('get'|'post'|'put'|'delete'|'options')[]} */
   #methods;
-  /** @type {typeof import('../middleware/middleware.js').default[]} */
+  /** @type {MiddlewareBuilder[]} */
   #middleware;
   /** @type {string} */
   #path;
@@ -42,7 +45,7 @@ export default class Route {
    * @param {('get'|'post'|'put'|'delete'|'options')[]} methods 
    * @param {string} path 
    * @param {import('../action/action.js').default} action 
-   * @param {typeof import('../middleware/middleware.js').default[]} [middleware] 
+   * @param {(MiddlewareBuilder|typeof import('../middleware/middleware.js').default)[]} [middleware] 
    * @param {Record<string, typeof import('./route-binding.js').default>} [bindings]
    */
   constructor(app, methods, path, action, middleware = [], bindings = {}) {
@@ -55,7 +58,7 @@ export default class Route {
     }`;
     this.#methods = methods;
     this.#action = action;
-    this.#middleware = middleware;
+    this.#middleware = this.#sanitizeMiddleware(middleware);
     this.#bindings = bindings;
   }
 
@@ -65,7 +68,7 @@ export default class Route {
    */
   async execute(request) {
     for(const middleware of this.#middleware) {
-      const instance = new middleware(this.#app, request);
+      const instance = middleware.build(this.#app, request);
 
       const result = await instance.execute();
 
@@ -114,5 +117,13 @@ export default class Route {
     }
 
     return null;
+  }
+
+  /**
+   * @param {(MiddlewareBuilder|typeof import('../middleware/middleware.js').default)[]} middleware
+   * @return {MiddlewareBuilder[]}
+   */
+  #sanitizeMiddleware(middleware) {
+    return middleware.map(item => item instanceof MiddlewareBuilder ? item : new MiddlewareBuilder(item));
   }
 }
