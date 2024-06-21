@@ -48,7 +48,7 @@ export default class RouteGroupBuilder {
 
     await callback();
 
-    context.pop();
+    this.#app.router.context.pop();
   }
 
   /**
