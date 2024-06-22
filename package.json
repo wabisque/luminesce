@@ -1,6 +1,6 @@
 {
   "name": "@dreamitdev/luminesce",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "A simple aws serverless framework for dreamitdev projects",
   "type": "module",
   "main": "index.js",
@@ -41,7 +41,7 @@
   "homepage": "https://github.com/dreamitdev/luminesce#readme",
   "dependencies": {
     "@dreamitdev/mazo": "^0.0.0",
-    "@dreamitdev/morph": "^0.0.0",
+    "@dreamitdev/morph": "^0.0.1",
     "bcryptjs": "^2.4.3",
     "joi": "^17.13.3",
     "mysql2": "^3.10.1",
