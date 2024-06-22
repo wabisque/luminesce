@@ -108,7 +108,7 @@ export default class Request {
   getHeader(key) {
     return Object
       .entries(this.#headers)
-      .find(([ existingKey ]) => existingKey.toLocaleLowerCase() == key.toLocaleLowerCase)?.[1]
+      .find(([ existingKey ]) => existingKey.toLocaleLowerCase() == key.toLocaleLowerCase())?.[1]
     ?? null;
   }
 
@@ -136,7 +136,7 @@ export default class Request {
   }
 
   #generateInput() {
-    const contentType = this.getHeader('content-type');
+    const contentType = this.getHeader('Content-Type');
 
     if (contentType?.startsWith('application/json') ?? false) {
       return new JsonParser(this.#body).execute();
