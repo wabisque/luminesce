@@ -27,7 +27,7 @@ export default class Route {
   get path() {
     return this.#path;
   }
-  /** @type {import('../action/action.js').default} */
+  /** @type {typeof import('../action/action.js').default} */
   #action;
   /** @type {import('../../application/application.js').default} */
   #app;
@@ -78,6 +78,8 @@ export default class Route {
 
       request = result ?? request;
     }
+
+    await request.validate();
 
     const instance = new this.#action(this.#app, request);
 

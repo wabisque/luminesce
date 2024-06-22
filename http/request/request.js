@@ -55,6 +55,10 @@ export default class Request {
   get _app() {
     return this.#app;
   }
+  /** @type {import('../routing/route-match.js').default} */
+  get _match() {
+    return this.#match;
+  }
   /** @type {import('../../application/application.js').default} */
   #app;
   /** @type {string} */
@@ -83,14 +87,16 @@ export default class Request {
    * @param {Record<string, string>} headers
    * @param {string} [body]
    * @param {string} [search]
+   * @param {import('../routing/route-match.js').default?} [match]
    */
-  constructor(app, method, path, headers, body = '', search = '') {
+  constructor(app, method, path, headers, body = '', search = '', match = null) {
     this.#app = app;
     this.#method = method;
     this.#path = path;
     this.#headers = headers;
     this.#body = body;
     this.#search = search;
+    this.#match = match;
 
     this.#input = this.#generateInput();
     this.#query = this.#generateQuery();
