@@ -1,4 +1,5 @@
 import Action from './action/action.js';
+import MiddlewareBuilder from './middleware/middleware-builder.js';
 import Middleware from './middleware/middleware.js';
 import Request from './request/request.js';
 import Response from './response/response.js';
@@ -17,6 +18,7 @@ export const action = {
 
 export const middleware = {
   Middleware,
+  MiddlewareBuilder,
 };
 
 export const request = {

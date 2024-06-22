@@ -25,7 +25,7 @@ export default class Request {
       ...this.#input,
     };
   }
-  /** @type {import('../routing/route-match.js').default} */
+  /** @type {import('../routing/route-match.js').default?} */
   get match() {
     return this.#match;
   }

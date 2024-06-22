@@ -22,6 +22,7 @@ import RouteGroupBuilder from './http/routing/route-group-builder.js';
 import RouteMatch from './http/routing/route-match.js';
 import StrUtility from './utilities/str.js';
 import UuidUtility from './utilities/uuid.js';
+import MiddlewareBuilder from './http/middleware/middleware-builder.js';
 
 export const application = {
   Application,
@@ -58,6 +59,7 @@ export const http = {
   },
   middleware: {
     Middleware,
+    MiddlewareBuilder,
   },
   request: {
     Request,
