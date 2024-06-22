@@ -13,11 +13,21 @@ export default class Request {
       ...this.#input,
     };
   }
+  /** @type {Record<string, string>} */
+  get headers() {
+    return {
+      ...this.#headers,
+    };
+  }
   /** @type {Record<string, *>} */
   get input() {
     return {
       ...this.#input,
     };
+  }
+  /** @type {import('../routing/route-match.js').default} */
+  get match() {
+    return this.#match;
   }
   /** @type {'get'|'post'|'put'|'delete'|'options'} */
   get method() {
@@ -37,12 +47,6 @@ export default class Request {
       ...this.#query,
     };
   }
-  /** @type {Record<string, *>} */
-  get validated() {
-    return {
-      ...this.#validated,
-    };
-  }
   /** @type {import('../routing/route.js').default?} */
   get route() {
     return this.#match?.route ?? null;
@@ -51,16 +55,12 @@ export default class Request {
   get search() {
     return this.#search;
   }
-  /** @type {import('../../application/application.js').default} */
-  get _app() {
-    return this.#app;
+  /** @type {Record<string, *>} */
+  get validated() {
+    return {
+      ...this.#validated,
+    };
   }
-  /** @type {import('../routing/route-match.js').default} */
-  get _match() {
-    return this.#match;
-  }
-  /** @type {import('../../application/application.js').default} */
-  #app;
   /** @type {string} */
   #body;
   /** @type {Record<string, string>} */
@@ -81,7 +81,6 @@ export default class Request {
   #validated;
 
   /**
-   * @param {import('../../application/application.js').default} app
    * @param {'get'|'post'|'put'|'delete'|'options'} method
    * @param {string} path
    * @param {Record<string, string>} headers
@@ -89,8 +88,7 @@ export default class Request {
    * @param {string} [search]
    * @param {import('../routing/route-match.js').default?} [match]
    */
-  constructor(app, method, path, headers, body = '', search = '', match = null) {
-    this.#app = app;
+  constructor(method, path, headers, body = '', search = '', match = null) {
     this.#method = method;
     this.#path = path;
     this.#headers = headers;
