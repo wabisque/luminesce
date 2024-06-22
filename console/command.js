@@ -20,7 +20,7 @@ export default class Command {
    */
   constructor(app, args = {}) {
     this.#app = app;
-    this._args = [args];
+    this._args = args;
   }
 
   /** 
