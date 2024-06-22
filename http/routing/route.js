@@ -79,6 +79,8 @@ export default class Route {
       request = result ?? request;
     }
 
+    console.log(Object.getPrototypeOf(request).constructor);
+
     await request.validate();
 
     const instance = new this.#action(this.#app, request);
