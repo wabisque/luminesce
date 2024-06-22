@@ -118,6 +118,8 @@ export default class Request {
   async validate() {
     const schema = await this._validation();
 
+    console.log('<Luminesce>', this.data);
+
     this.#validated = await schema.validateAsync(
       this.data,
       {
