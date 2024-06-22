@@ -158,6 +158,6 @@ export default class Request {
   }
 
   #generateQuery() {
-    return new QueryParser(this.search).execute();
+    return new QueryParser(this.#search).execute();
   }
 }
