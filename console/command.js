@@ -9,18 +9,18 @@ export default class Command {
     return this.#app;
   }
 
-  /** @type {Record<string, (string|string[])?>} */
+  /** @type {Record<string, *>} */
   _args;
   /** @type {import('../application/application.js').default} */
   #app;
 
   /**
    * @param {import('../application/application.js').default} app
-   * @param {Record<string, (string|string[])?>} args
+   * @param {Record<string, *>} [args]
    */
-  constructor(app, args) {
+  constructor(app, args = {}) {
     this.#app = app;
-    this._args = args;
+    this._args = [args];
   }
 
   /** 
