@@ -53,4 +53,15 @@ export default class Connection {
 
     return records;
   }
+
+  /**
+   * @returns {Promise<void>}
+   */
+  async reset() {
+    const database = this.#app.config.get('db.database');
+
+    await this.#proxy.query(`DROP DATABASE IF EXISTS \`${database}\``);
+    await this.#proxy.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
+    await this.#proxy.query(`USE \`${database}\`;`);
+  }
 }
