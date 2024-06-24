@@ -23,7 +23,6 @@ export default class Connection {
     const { username: user, password } = await this.#app.secrets.get();
 
     this.#proxy = await createConnection({
-      database,
       host,
       port,
       user,
