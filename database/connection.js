@@ -32,8 +32,8 @@ export default class Connection {
     });
     
     await this.#proxy.connect();
-    await this.#proxy.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
-    await this.#proxy.query(`USE \`${database}\`;`);
+    
+    await this.#setup();
   }
 
   /**
@@ -61,7 +61,25 @@ export default class Connection {
     const database = this.#app.config.get('db.database');
 
     await this.#proxy.query(`DROP DATABASE IF EXISTS \`${database}\``);
+
+    await this.#setup();
+  }
+
+  /**
+   * @return {Promise<void>}
+   */
+  async #setup() {
     await this.#proxy.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
     await this.#proxy.query(`USE \`${database}\`;`);
+    await this.#proxy.query(`
+      CREATE TABLE IF NOT EXISTS \`migrations\`
+        (
+          \`id\` INT UNSIGNED AUTO_INCREMENT NOT NULL,
+          \`migration\` VARCHAR(512) NOT NULL,
+          \`batch\` INT UNSIGNED NOT NULL,
+          CONSTRAINT \`migrations_id_primary_key\` PRIMARY KEY (\`id\`),
+          CONSTRAINT \`migrations_migration_unique_key\` UNIQUE (\`migration\`)
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+    `);
   }
 }
