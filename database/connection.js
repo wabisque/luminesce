@@ -33,7 +33,7 @@ export default class Connection {
     
     await this.#proxy.connect();
     
-    await this.#setup();
+    await this.#setup(database);
   }
 
   /**
@@ -62,13 +62,13 @@ export default class Connection {
 
     await this.#proxy.query(`DROP DATABASE IF EXISTS \`${database}\``);
 
-    await this.#setup();
+    await this.#setup(database);
   }
 
   /**
    * @return {Promise<void>}
    */
-  async #setup() {
+  async #setup(database) {
     await this.#proxy.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
     await this.#proxy.query(`USE \`${database}\`;`);
     await this.#proxy.query(`
